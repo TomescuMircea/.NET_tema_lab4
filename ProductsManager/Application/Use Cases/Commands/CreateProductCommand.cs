@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Repositories
+namespace Application.Use_Cases.Commands
 {
-    public class IProductRepository
+    public class CreateProductCommand
     {
     }
 }
