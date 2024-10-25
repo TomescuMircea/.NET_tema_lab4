@@ -1,16 +1,25 @@
-﻿using FluentValidation;
+﻿using Domain.Repositories;
+using FluentValidation;
 
 namespace Application.Use_Cases.Commands
 {
     public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
     {
-        public DeleteProductCommandValidator()
+        private readonly IProductRepository repository;
+
+        public DeleteProductCommandValidator(IProductRepository repository)
         {
-            RuleFor(x => x.Id).NotEmpty().Must(BeAValidGuid).WithMessage("The id you enter is not valid");
+            this.repository = repository;
+
+            RuleFor(x => x.Id).MustAsync(BeAValidProduct)
+                              .WithMessage("Product not found");
         }
-        private bool BeAValidGuid(Guid guid)
+
+        private async Task<bool> BeAValidProduct(Guid id, CancellationToken cancellationToken)
         {
-            return Guid.TryParse(guid.ToString(), out _);
+            var product = await repository.GetProductAsync(id);
+            return product != null;
         }
     }
+
 }

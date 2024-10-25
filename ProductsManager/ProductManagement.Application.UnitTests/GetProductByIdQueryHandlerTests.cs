@@ -6,7 +6,6 @@ using Domain.Entities;
 using Domain.Repositories;
 using FluentAssertions;
 using NSubstitute;
-using Xunit;
 
 namespace ProductManagement.Application.UnitTests
 {

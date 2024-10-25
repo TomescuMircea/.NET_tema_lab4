@@ -1,6 +1,7 @@
 ﻿using Application.Use_Cases.Commands;
 using Domain.Repositories;
 using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 
 namespace Application.Use_Cases.CommandHandlers
@@ -16,16 +17,16 @@ namespace Application.Use_Cases.CommandHandlers
 
         public async Task<Guid> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            DeleteProductCommandValidator validatorRules = new DeleteProductCommandValidator();
-            var validator = validatorRules.Validate(request);
-            if (!validator.IsValid)
+            var product = await repository.GetProductAsync(request.Id);
+            if (product == null)
             {
-                throw new ValidationException(validator.Errors);
+                return Guid.Empty;
             }
 
-            var product = await repository.GetProductAsync(request.Id);
             await repository.DeleteAsync(request.Id);
             return product.Id;
         }
     }
+
+
 }
