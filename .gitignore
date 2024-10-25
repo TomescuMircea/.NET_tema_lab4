@@ -399,6 +399,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+# appsettings.json - fisierul cu datele de autentificare la baza de date
+appsettings.json
+
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
