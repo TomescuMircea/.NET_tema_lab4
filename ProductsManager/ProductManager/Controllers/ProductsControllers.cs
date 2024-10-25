@@ -24,5 +24,13 @@ namespace ProductsManager.Controllers
             return Ok(id);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+            var command = new DeleteProductCommand { Id = id };
+            await mediator.Send(command);
+            return NoContent();
+        }
+
     }
 }

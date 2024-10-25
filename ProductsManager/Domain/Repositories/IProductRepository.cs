@@ -7,7 +7,7 @@ namespace Domain.Repositories
         Task<IEnumerable<Product>> GetProductsAsync();
         Task<Product> GetProductAsync(Guid id);
         Task<Guid> AddAsync(Product product);
-        Task<Guid> DeleteAsync(Guid id);
+        Task DeleteAsync(Guid id);
         Task<Guid> UpdateAsync(Product product);
     }
 }
