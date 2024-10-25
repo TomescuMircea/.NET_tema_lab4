@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace Application.Use_Cases.Commands
 {
-    public class CreateProductCommand
+    public class CreateProductCommand : IRequest<Guid>
     {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public decimal VAT { get; set; }
     }
 }

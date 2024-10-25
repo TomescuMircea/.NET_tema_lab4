@@ -1,11 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -16,9 +11,11 @@ namespace Infrastructure.Repositories
         {
             this.context = context;
         }
-        public Task<Guid> AddAsync(Product product)
+        public async Task<Guid> AddAsync(Product product)
         {
-            throw new NotImplementedException();
+            await context.Products.AddAsync(product);
+            await context.SaveChangesAsync();
+            return product.Id;
         }
 
         public Task<Guid> DeleteAsync(Guid id)

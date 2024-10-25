@@ -18,7 +18,9 @@ namespace ProductsManager.Controllers
         public async Task<IActionResult> CreateProduct(CreateProductCommand command)
         {
             var id = await mediator.Send(command);
+            //rand de decomentat dupa ce se face GetProductById
             //return CreatedAtAction(nameof(GetProductById), new { Id = id }, id);
+            //rand de comentat dupa ce se face GetProductById
             return Ok(id);
         }
 

@@ -1,6 +1,6 @@
-﻿namespace Domain.Entities
+﻿namespace Application.DTOs
 {
-    public class Product
+    public class ProductDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
