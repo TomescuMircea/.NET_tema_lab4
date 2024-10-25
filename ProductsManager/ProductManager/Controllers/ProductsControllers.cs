@@ -46,5 +46,16 @@ namespace ProductsManager.Controllers
             return Ok(product);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateBook(Guid id, UpdateProductCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("The id should be identical with command.Id");
+            }
+            await mediator.Send(command);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
+
     }
 }
