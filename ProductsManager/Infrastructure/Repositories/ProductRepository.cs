@@ -23,9 +23,10 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetProductAsync(Guid id)
+        public async Task<Product> GetProductAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await context.Products.FindAsync(id);
+           
         }
 
         public Task<IEnumerable<Product>> GetProductsAsync()
