@@ -22,7 +22,7 @@ namespace ProductsManager.Controllers
         {
             var id = await mediator.Send(command);
             return CreatedAtAction(nameof(GetProductById), new { Id = id }, id);
-           
+
             return Ok(id);
         }
 
@@ -56,12 +56,13 @@ namespace ProductsManager.Controllers
             }
             await mediator.Send(command);
             return StatusCode(StatusCodes.Status204NoContent);
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            return  await mediator.Send(new GetProductsQuery());
-            
-        }
+            return await mediator.Send(new GetProductsQuery());
 
+        }
     }
 }
