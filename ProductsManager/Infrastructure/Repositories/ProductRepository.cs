@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -31,9 +32,9 @@ namespace Infrastructure.Repositories
            
         }
 
-        public Task<IEnumerable<Product>> GetProductsAsync()
+        public async Task<IEnumerable<Product>> GetProductsAsync()
         {
-            throw new NotImplementedException();
+            return await context.Products.ToListAsync();
         }
 
         public Task<Guid> UpdateAsync(Product product)
