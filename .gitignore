@@ -402,10 +402,10 @@ FodyWeavers.xsd
 *.sln.iml
 
 # appsettings.json - fisierul cu datele de autentificare la baza de date
-appsettings.json
+#appsettings.json
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio
-/ProductsManager/ProductManager/appsettings.json
+#/ProductsManager/ProductManager/appsettings.json
