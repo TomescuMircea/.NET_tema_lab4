@@ -8,6 +8,6 @@ namespace Domain.Repositories
         Task<Product> GetProductAsync(Guid id);
         Task<Guid> AddAsync(Product product);
         Task DeleteAsync(Guid id);
-        Task<Guid> UpdateAsync(Product product);
+        Task UpdateAsync(Product product);
     }
 }

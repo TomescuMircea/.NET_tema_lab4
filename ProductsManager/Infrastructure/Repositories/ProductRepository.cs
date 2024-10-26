@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -36,9 +37,10 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Guid> UpdateAsync(Product product)
+        public async Task UpdateAsync(Product product)
         {
-            throw new NotImplementedException();
+            context.Entry(product).State = EntityState.Modified;
+            await context.SaveChangesAsync();
         }
     }
 }
