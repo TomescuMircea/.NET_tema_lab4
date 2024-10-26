@@ -20,7 +20,14 @@ namespace Application.Use_Cases.CommandHandlers
             var product = await repository.GetProductAsync(request.Id);
             if (product == null)
             {
-                return Guid.Empty;
+                throw new KeyNotFoundException($"Product with ID {request.Id} was not found.");
+            }
+
+            var validator = new DeleteProductCommandValidator();
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors);
             }
 
             await repository.DeleteAsync(request.Id);

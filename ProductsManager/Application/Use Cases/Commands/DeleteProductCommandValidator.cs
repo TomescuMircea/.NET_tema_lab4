@@ -7,18 +7,14 @@ namespace Application.Use_Cases.Commands
     {
         private readonly IProductRepository repository;
 
-        public DeleteProductCommandValidator(IProductRepository repository)
+        public DeleteProductCommandValidator()
         {
-            this.repository = repository;
-
-            RuleFor(x => x.Id).MustAsync(BeAValidProduct)
-                              .WithMessage("Product not found");
+            RuleFor(x => x.Id).NotEmpty().Must(BeAValidGuid).WithMessage("'Id' must be a valid Guid;");
         }
 
-        private async Task<bool> BeAValidProduct(Guid id, CancellationToken cancellationToken)
+        private bool BeAValidGuid(Guid guid)
         {
-            var product = await repository.GetProductAsync(id);
-            return product != null;
+            return Guid.TryParse(guid.ToString(), out _);
         }
     }
 
