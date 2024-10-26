@@ -27,7 +27,7 @@ namespace ProductManagement.Application.UnitTests
             // Arrange
             var productId = Guid.NewGuid();
             var existingProduct = GenerateProducts().First();
-            var updateCommand = new UpdateProductCommand { Id = productId, Name = "New Name", Price = 15.0m, VAT = 0.2m };
+            var updateCommand = new UpdateProductCommand { Id = productId, Name = "New Name", Price = 15.0, VAT = 0.2m };
             var handler = new UpdateProductCommandHandler(repository, mapper);
 
             repository.GetProductAsync(productId).Returns(existingProduct);
@@ -45,7 +45,7 @@ namespace ProductManagement.Application.UnitTests
         {
             // Arrange
             var productId = Guid.NewGuid();
-            var updateCommand = new UpdateProductCommand { Id = productId, Name = "Non-existent Product", Price = 20.0m, VAT = 0.3m };
+            var updateCommand = new UpdateProductCommand { Id = productId, Name = "Non-existent Product", Price = 20.0, VAT = 0.3m };
             var handler = new UpdateProductCommandHandler(repository, mapper);
 
             repository.GetProductAsync(productId).Returns((Product)null);

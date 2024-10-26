@@ -23,7 +23,7 @@ namespace ProductsManager.Controllers
             var id = await mediator.Send(command);
             return CreatedAtAction(nameof(GetProductById), new { Id = id }, id);
 
-            return Ok(id);
+            //return Ok(id);
         }
 
 
