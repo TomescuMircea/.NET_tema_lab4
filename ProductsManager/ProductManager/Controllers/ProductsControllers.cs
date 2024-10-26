@@ -1,6 +1,7 @@
 ﻿using Application.DTOs;
 using Application.Use_Cases.Commands;
 using Application.Use_Cases.Queries;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,6 +56,11 @@ namespace ProductsManager.Controllers
             }
             await mediator.Send(command);
             return StatusCode(StatusCodes.Status204NoContent);
+        [HttpGet]
+        public async Task<ActionResult<List<Product>>> GetProducts()
+        {
+            return  await mediator.Send(new GetProductsQuery());
+            
         }
 
     }

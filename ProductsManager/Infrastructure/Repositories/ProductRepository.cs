@@ -32,9 +32,9 @@ namespace Infrastructure.Repositories
            
         }
 
-        public Task<IEnumerable<Product>> GetProductsAsync()
+        public async Task<IEnumerable<Product>> GetProductsAsync()
         {
-            throw new NotImplementedException();
+            return await context.Products.ToListAsync();
         }
 
         public async Task UpdateAsync(Product product)
